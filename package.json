@@ -1,0 +1,18 @@
+{
+  "name": "vu-lms-login",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Virtual University Learning Management System Login",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^7.6.3"
+  }
+}
