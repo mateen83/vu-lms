@@ -1,0 +1,557 @@
+
+      /* Base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+      
+      body {
+        background-color: #f4f6f9;
+        overflow-x: hidden;
+      }
+      
+      /* Main container */
+      .main-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      
+      /* Content container */
+      .content-container {
+        display: flex;
+        flex-direction: column-reverse;
+        flex-grow: 1;
+      }
+      
+      @media (min-width: 1000px) {
+        .content-container {
+          flex-direction: row;
+        }
+      }
+      
+      /* Login form section */
+      .login-form-section {
+        background-color: #ffffff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        padding: 16px;
+      }
+      
+      @media (min-width: 1000px) {
+        .login-form-section {
+          width: 45vw;
+          padding: 80px;
+        }
+      }
+       @media (min-width: 1250px) {
+        .login-form-section {
+          width: 45vw;
+          padding: 130px;
+        }
+      }
+      .login-form-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      /* Logo */
+      .logo {
+        text-align: center;
+        margin-bottom: 24px;
+      }
+      
+      .logo img {
+        max-width: 200px;
+        width: 100%;
+      }
+      
+      /* Error message */
+      .error-message {
+        width: 100%;
+        background-color: #fff1f0;
+        border: 1px solid #ffa39e;
+        color: #f5222d;
+        padding: 12px 16px;
+        border-radius: 4px;
+        margin-bottom: 16px;
+        position: relative;
+        display: none;
+      }
+      
+      /* Success message */
+      .success-message {
+        width: 100%;
+        background-color: #f6ffed;
+        border: 1px solid #b7eb8f;
+        color: #52c41a;
+        padding: 12px 16px;
+        border-radius: 4px;
+        margin-bottom: 16px;
+        position: relative;
+        display: none;
+      }
+      
+      .message-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .message-content i {
+        margin-right: 8px;
+      }
+      
+      .error-message button, .success-message button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+      }
+      
+      .error-message button {
+        color: #f5222d;
+      }
+      
+      .success-message button {
+        color: #52c41a;
+      }
+      
+      /* Form */
+      .login-form {
+        width: 100%;
+      }
+      
+      .form-group {
+        margin-bottom: 16px;
+      }
+      
+      .input-field {
+        width: 100%;
+        padding: .85rem 1rem;
+        border: 1px solid #e2e8f0;
+        outline: none;
+        transition: border-color 0.2s;
+        font-size: 1rem;
+        line-height: 1.25;
+        border-radius: .25rem;
+      }
+      
+      .input-field:focus {
+        border-color: #5867dd;
+      }
+      
+      .password-wrapper {
+        position: relative;
+      }
+      
+      .password-toggle {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #5867dd;
+      }
+      
+      .form-text {
+        text-align: left;
+      }
+      
+      .form-link {
+        color: #5867dd;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      
+      .form-button {
+        background-color: #5867dd;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 8px 25px;
+        padding: 1rem 2.5rem;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.2s;
+      }
+      
+      .form-button:hover {
+        background-color: #4554c7;
+      }
+      
+      .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 16px;
+        margin-bottom: 16px;
+      }
+      
+      /* Additional links */
+      .additional-links {
+        width: 100%;
+        margin-top: 20px;
+      }
+      
+      .link-item {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        margin-bottom: 12px;
+      }
+      
+      .link-item a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
+      
+      .link-item i {
+        margin-right: 8px;
+      }
+      
+      .link-item.datesheet a, .link-item.datesheet i {
+        color: #ff0000;
+      }
+      
+      .link-item.notice a, .link-item.handbook a {
+        color: #5867dd;
+      }
+      
+      .animate-pulse {
+        animation: pulse 2s infinite;
+      }
+      
+      @keyframes pulse {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      
+      /* Background section */
+      .background-section {
+        display: none;
+        flex-grow: 1;
+        background: linear-gradient(to bottom, #010413, #0745d6, #010413);
+        position: relative;
+      }
+      
+      @media (min-width: 768px) {
+        .background-section {
+          display: flex;
+          /* align-items: center; */
+          justify-content: center;
+          padding-top: 8rem;
+        }
+      }
+      
+      .background-overlay {
+        position: absolute;
+        inset: 0;
+        background-image: url('https://vulms.vu.edu.pk/App_Themes/Default/Images/bg/bg-New.png');
+        background-position: center;
+        /* background-repeat: no-repeat;
+        background-size: cover; */
+        z-index: 10;
+      }
+      
+      .background-content {
+        position: relative;
+        z-index: 20;
+        color: white;
+        text-align: center;
+        padding: 0 24px;
+      }
+      
+      .background-title {
+        font-size: 50px;
+        font-weight: 500;
+        margin-bottom: 24px;
+        /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); */
+        text-shadow: rgb(0, 0, 0) 3px 0px 0px,
+    rgb(0, 0, 0) 2.83487px 0.981584px 0px,
+    rgb(0, 0, 0) 2.35766px 1.85511px 0px,
+    rgb(0, 0, 0) 1.62091px 2.52441px 0px,
+    rgb(0, 0, 0) 0.705713px 2.91581px 0px,
+    rgb(0, 0, 0) -0.287171px 2.98622px 0px,
+    rgb(0, 0, 0) -1.24844px 2.72789px 0px,
+    rgb(0, 0, 0) -2.07227px 2.16926px 0px,
+    rgb(0, 0, 0) -2.66798px 1.37182px 0px,
+    rgb(0, 0, 0) -2.96998px 0.42336px 0px,
+    rgb(0, 0, 0) -2.94502px -0.571704px 0px,
+    rgb(0, 0, 0) -2.59586px -1.50383px 0px,
+    rgb(0, 0, 0) -1.96093px -2.27041px 0px,
+    rgb(0, 0, 0) -1.11013px -2.78704px 0px,
+    rgb(0, 0, 0) -0.137119px -2.99686px 0px,
+    rgb(0, 0, 0) 0.850987px -2.87677px 0px,
+    rgb(0, 0, 0) 1.74541px -2.43999px 0px,
+    rgb(0, 0, 0) 2.44769px -1.73459px 0px,
+    rgb(0, 0, 0) 2.88051px -0.838247px 0px;
+      }
+      
+      .quote-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 40px;
+      }
+      
+      .quote-mark {
+        margin: 0 8px;
+      }
+      
+      .quote-text {
+        display: inline-block;
+      }
+      
+      .quote-text.urdu {
+        font-family: 'Noto Nastaliq Urdu', serif;
+        text-shadow: rgb(0, 0, 0) 3px 0px 0px,
+    rgb(0, 0, 0) 2.83487px 0.981584px 0px,
+    rgb(0, 0, 0) 2.35766px 1.85511px 0px,
+    rgb(0, 0, 0) 1.62091px 2.52441px 0px,
+    rgb(0, 0, 0) 0.705713px 2.91581px 0px,
+    rgb(0, 0, 0) -0.287171px 2.98622px 0px,
+    rgb(0, 0, 0) -1.24844px 2.72789px 0px,
+    rgb(0, 0, 0) -2.07227px 2.16926px 0px,
+    rgb(0, 0, 0) -2.66798px 1.37182px 0px,
+    rgb(0, 0, 0) -2.96998px 0.42336px 0px,
+    rgb(0, 0, 0) -2.94502px -0.571704px 0px,
+    rgb(0, 0, 0) -2.59586px -1.50383px 0px,
+    rgb(0, 0, 0) -1.96093px -2.27041px 0px,
+    rgb(0, 0, 0) -1.11013px -2.78704px 0px,
+    rgb(0, 0, 0) -0.137119px -2.99686px 0px,
+    rgb(0, 0, 0) 0.850987px -2.87677px 0px,
+    rgb(0, 0, 0) 1.74541px -2.43999px 0px,
+    rgb(0, 0, 0) 2.44769px -1.73459px 0px,
+    rgb(0, 0, 0) 2.88051px -0.838247px 0px;
+      }
+      
+      .quote-refresh {
+        margin-left: 8px;
+        padding: 4px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        color: white;
+        transition: background-color 0.2s;
+      }
+      
+      .quote-refresh:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+      
+      /* Mobile header */
+      .mobile-header {
+        display: flex;
+        width: 100%;
+        background: linear-gradient(to bottom, #010413, #0745d6, #010413);
+        position: relative;
+        min-height: 165px;
+      }
+      
+      @media (min-width: 768px) {
+        .mobile-header {
+          display: none;
+        }
+      }
+      
+      .mobile-header-overlay {
+        position: absolute;
+        inset: 0;
+        background-image: url('https://vulms.vu.edu.pk/App_Themes/Default/Images/bg/bg-New.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: 10;
+      }
+      
+      .mobile-header-content {
+        position: relative;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      
+        padding: 16px;
+        text-align: center;
+      }
+      
+      .mobile-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+       text-shadow: rgb(0, 0, 0) 3px 0px 0px,
+    rgb(0, 0, 0) 2.83487px 0.981584px 0px,
+    rgb(0, 0, 0) 2.35766px 1.85511px 0px,
+    rgb(0, 0, 0) 1.62091px 2.52441px 0px,
+    rgb(0, 0, 0) 0.705713px 2.91581px 0px,
+    rgb(0, 0, 0) -0.287171px 2.98622px 0px,
+    rgb(0, 0, 0) -1.24844px 2.72789px 0px,
+    rgb(0, 0, 0) -2.07227px 2.16926px 0px,
+    rgb(0, 0, 0) -2.66798px 1.37182px 0px,
+    rgb(0, 0, 0) -2.96998px 0.42336px 0px,
+    rgb(0, 0, 0) -2.94502px -0.571704px 0px,
+    rgb(0, 0, 0) -2.59586px -1.50383px 0px,
+    rgb(0, 0, 0) -1.96093px -2.27041px 0px,
+    rgb(0, 0, 0) -1.11013px -2.78704px 0px,
+    rgb(0, 0, 0) -0.137119px -2.99686px 0px,
+    rgb(0, 0, 0) 0.850987px -2.87677px 0px,
+    rgb(0, 0, 0) 1.74541px -2.43999px 0px,
+    rgb(0, 0, 0) 2.44769px -1.73459px 0px,
+    rgb(0, 0, 0) 2.88051px -0.838247px 0px;
+        width: 100%;
+      }
+      
+      /* Footer */
+      .desktop-footer {
+        display: none;
+        background-color: #ffffff;
+        color: #5867dd;
+        padding: 16px 0;
+      }
+      
+      @media (min-width: 768px) {
+        .desktop-footer {
+          display: block;
+        }
+      }
+      
+      .footer-container {
+        /* max-width: 1320px; */
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+      
+      .desktop-footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .footer-left {
+        display: flex;
+        align-items: center;
+      }
+      
+      .footer-logo {
+        margin-right: 16px;
+      }
+      
+      .footer-logo img {
+        height: 45px;
+        width: auto;
+      }
+      
+      .footer-links a {
+        color: #5867dd;
+        text-decoration: none;
+        margin-left: 16px;
+      }
+      
+      .footer-center {
+        text-align: center;
+        font-size: 14px;
+        color: #5867dd;
+      }
+      
+      .footer-right {
+        display: flex;
+        align-items: center;
+      }
+      
+      .social-icon {
+        margin-left: 16px;
+        font-size: 28px;
+        color: #5867dd;
+        text-decoration: none;
+        margin-top: -3px;
+      }
+      
+      .twitter-icon {
+        margin-left: 16px;
+        width: 24px;
+        height: 24px;
+      }
+      
+      /* Mobile footer */
+      .mobile-footer {
+        display: block;
+        background-color: #ffffff;
+        color: #5867dd;
+        padding: 12px 0;
+      }
+      
+      @media (min-width: 768px) {
+        .mobile-footer {
+          display: none;
+        }
+      }
+      
+      .mobile-footer-content {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .mobile-footer-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .mobile-footer-logos {
+        display: flex;
+        align-items: center;
+      }
+      
+      .mobile-footer-logo {
+        margin-right: 8px;
+      }
+      
+      .mobile-footer-logo img {
+        height: 38px;
+        width: auto;
+      }
+      
+      .mobile-footer-social {
+        display: flex;
+        align-items: center;
+      }
+      
+      .mobile-footer-links {
+        display: flex;
+        gap: 12px;
+      }
+      
+      .mobile-footer-links a {
+        color: #5867dd;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      
+      .mobile-footer-copyright {
+        font-size: 12px;
+        color: #5867dd;
+      }
+      
+      .validation-error {
+        color: #f5222d;
+        font-size: 12px;
+        margin-top: 4px;
+        display: none;
+      }
+  

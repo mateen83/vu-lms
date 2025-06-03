@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="https://vulms.vu.edu.pk/favicon.ico" type="image/x-icon">
+
+<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Management System- Virtual University of Pakistan</title>
+    <meta name="description" content="Virtual University Learning Management System" />
+    <meta name="author" content="Lovable" />
+
+    <meta property="og:title" content="VU LMS Login" />
+    <meta property="og:description" content="Virtual University Learning Management System" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Google Fonts - Noto Nastaliq Urdu -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+    
+    
+  </head>
+
+  <body>
+    <div class="main-container">
+      <!-- Main Content -->
+      <div class="content-container">
+        <!-- Login Form Section -->
+        <div class="login-form-section">
+          <div class="login-form-content">
+            <!-- Logo -->
+            <div class="logo">
+              <img src="https://vulms.vu.edu.pk/App_Themes/Default/Images/logos/Logo-New.png" alt="VU Logo">
+            </div>
+            
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage">
+              <div class="message-content">
+                <span id="errorText">Incorrect username or password. Please try again.</span>
+                <button type="button" onclick="closeError()">
+                  &times;
+                </button>
+              </div>
+            </div>
+            
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+              <div class="message-content">
+                <div>
+                  <i class="fas fa-check-circle"></i>
+                  <span id="successText">You have successfully logged in</span>
+                </div>
+                <button type="button" onclick="closeSuccess()">
+                  &times;
+                </button>
+              </div>
+            </div>
+            
+            <!-- Login Form -->
+            <form class="login-form" id="loginForm">
+              <div class="form-group">
+                <input 
+                  type="text" 
+                  id="studentID" 
+                  class="input-field" 
+                  placeholder="Student ID" 
+                  maxlength="12"
+                >
+                <div class="validation-error" id="studentIDError">Enter Student ID</div>
+              </div>
+              
+              <div class="form-group">
+                <div class="password-wrapper">
+                  <input 
+                    type="password" 
+                    id="password" 
+                    class="input-field" 
+                    placeholder="Password" 
+                   
+                  >
+                  <button 
+                    type="button" 
+                    class="password-toggle" 
+                    id="passwordToggle"
+                  >
+                    <i class="fas fa-eye" id="passwordIcon"></i>
+                  </button>
+                </div>
+                <div class="validation-error" id="passwordError">Enter Password</div>
+                <div class="validation-error" id="formatError">Invalid Student ID format. ID must start with "bc" followed by 9 digits.</div>
+              </div>
+              
+              <div class="form-text">
+                <a href="#" class="form-link">Forgot Password?</a>
+              </div>
+              
+              <div class="button-container">
+                <button type="submit" class="form-button">
+                  Sign In
+                </button>
+              </div>
+            </form>
+            
+            <!-- Additional Links -->
+            <div class="additional-links">
+              <div class="link-item datesheet">
+                <a href="#">
+                  <i class="fa fa-calendar"></i>
+                  <span class="animate-pulse">Check Your Datesheet</span>
+                </a>
+              </div>
+              
+              <div class="link-item notice">
+                <a href="#">
+                  <i class="fa fa-bell"></i>
+                  <span>Notice Board</span>
+                </a>
+              </div>
+              
+              <div class="link-item handbook">
+                <a href="#">
+                  <i class="fa fa-book"></i>
+                  <span>Student Hand Book</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Background Section - Hidden on Mobile, Visible on Desktop -->
+        <div class="background-section">
+          <div class="background-overlay"></div>
+          <div class="background-content">
+            <h3 class="background-title">Learning Management System</h3>
+            <div class="quote-container">
+              <span class="quote-mark">"</span>
+              <span class="quote-text urdu" id="quoteText">
+                ناقص عقل گناہ کے وقت محافظت نہیں کر سکتی۔ بو علی سینا
+              </span>
+              <span class="quote-mark">"</span>
+              <button 
+                class="quote-refresh" 
+                id="quoteRefresh"
+              >
+                <i class="fas fa-sync-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mobile Header - Only Visible on Mobile -->
+        <div class="mobile-header">
+          <div class="mobile-header-overlay"></div>
+          <div class="mobile-header-content">
+            <h5 class="mobile-title">Learning Management System</h5>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Desktop Footer -->
+      <footer class="desktop-footer">
+        <div class="footer-container">
+          <div class="desktop-footer-content">
+            <!-- Left - Logo Section -->
+            <div class="footer-left">
+              <div class="footer-logo">
+                <a href="#">
+                  <img src="https://vulms.vu.edu.pk/App_Themes/Default/Images/logos/logo-1.png" alt="Logo">
+                </a>
+              </div>
+              <div class="footer-logo">
+                <a href="#">
+                  <img src="https://vulms.vu.edu.pk/App_Themes/Default/Images/logos/logo_govt_of_pakistan.png" alt="Govt Logo">
+                </a>
+              </div>
+              <div class="footer-links">
+                <a href="#">Contact Us</a>
+                <a href="#"><b>Help</b></a>
+              </div>
+            </div>
+            
+            <!-- Center - Copyright -->
+            <div class="footer-center">
+              <span>© 2020 IT Department, Virtual University of Pakistan.</span>
+            </div>
+            
+            <!-- Right - Social Icons -->
+            <div class="footer-right">
+              <a href="#" class="social-icon">
+                <i class="fab fa-facebook-square"></i>
+              </a>
+              <a href="#">
+                <img src="https://vulms.vu.edu.pk/App_Themes/Default/Images/twitter32.png" alt="Twitter" class="twitter-icon">
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+      
+      <!-- Mobile Footer -->
+      <footer class="mobile-footer">
+        <div class="footer-container">
+          <div class="mobile-footer-content">
+            <!-- Top Row with Logos and Social Icons -->
+            <div class="mobile-footer-row">
+              <div class="mobile-footer-logos">
+                <div class="mobile-footer-logo">
+                  <a href="#">
+                    <img src="https://vulms.vu.edu.pk/App_Themes/Default/Images/logos/logo-1.png" alt="Logo">
+                  </a>
+                </div>
+                <div class="mobile-footer-logo">
+                  <a href="#">
+                    <img src="https://vulms.vu.edu.pk/App_Themes/Default/Images/logos/logo_govt_of_pakistan.png" alt="Govt Logo">
+                  </a>
+                </div>
+              </div>
+              <div class="mobile-footer-social">
+                <a href="#" class="social-icon">
+                  <i class="fab fa-facebook-square"></i>
+                </a>
+                <a href="#">
+                  <img src="https://vulms.vu.edu.pk/App_Themes/Default/Images/twitter32.png" alt="Twitter" class="twitter-icon">
+                </a>
+              </div>
+            </div>
+            
+            <!-- Bottom Row with Links and Copyright -->
+            <div class="mobile-footer-row">
+              <div class="mobile-footer-links">
+                <a href="#">Contact Us</a>
+                <a href="#"><b>Help</b></a>
+              </div>
+            </div>
+            <div class="mobile-footer-copyright">
+              © 2020 IT Department, Virtual University of Pakistan.
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+   
+    <script src="script.js"></script>
+
+  </body>
+</html>
